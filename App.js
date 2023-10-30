@@ -1,118 +1,194 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+import React from 'react';  
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
+import { DataTable } from 'react-native-paper';  
+export default function App() {
+  const styles = StyleSheet.create({ 
+    container: { 
+      padding: 15, 
+    }, 
+    tableHeader: { 
+      backgroundColor: '#DCDCDC', 
+    }, 
+  });
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+    <ScrollView> 
+          <Image
+      style={styles.image}
+      source={require('./src/assets/Bundesliga.png')}
+    />
+    <DataTable style={styles.container}> 
+    <DataTable.Header style={styles.tableHeader}> 
+      <DataTable.Title>No</DataTable.Title> 
+      <DataTable.Title>Klub</DataTable.Title> 
+      <DataTable.Title>M</DataTable.Title> 
+      <DataTable.Title>M</DataTable.Title> 
+      <DataTable.Title>S</DataTable.Title> 
+      <DataTable.Title>K</DataTable.Title>
+      <DataTable.Title>P</DataTable.Title>  
+    </DataTable.Header> 
+    <DataTable.Row> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>LEV</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>8</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell>
+      <DataTable.Cell>25</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>BAY</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>7</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell>
+      <DataTable.Cell>23</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>STU</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>7</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell>
+      <DataTable.Cell>21</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>4</DataTable.Cell> 
+      <DataTable.Cell>DOR</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell>
+      <DataTable.Cell>21</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>5</DataTable.Cell> 
+      <DataTable.Cell>RBL</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell>
+      <DataTable.Cell>20</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>6</DataTable.Cell> 
+      <DataTable.Cell>HOF</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell>
+      <DataTable.Cell>18</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>7</DataTable.Cell> 
+      <DataTable.Cell>FRA</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>5</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell>
+      <DataTable.Cell>14</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>8</DataTable.Cell> 
+      <DataTable.Cell>SCF</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>4</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>4</DataTable.Cell>
+      <DataTable.Cell>13</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>WOB</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>4</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>5</DataTable.Cell>
+      <DataTable.Cell>12</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>10</DataTable.Cell> 
+      <DataTable.Cell>AUG</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>4</DataTable.Cell>
+      <DataTable.Cell>11</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>11</DataTable.Cell> 
+      <DataTable.Cell>BMG</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>4</DataTable.Cell>
+      <DataTable.Cell>9</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>12</DataTable.Cell> 
+      <DataTable.Cell>BRE</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell>
+      <DataTable.Cell>9</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>13</DataTable.Cell> 
+      <DataTable.Cell>HEI</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell>
+      <DataTable.Cell>7</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>14</DataTable.Cell> 
+      <DataTable.Cell>D98</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell>
+      <DataTable.Cell>7</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>15</DataTable.Cell> 
+      <DataTable.Cell>UNI</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>2</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>7</DataTable.Cell>
+      <DataTable.Cell>6</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>16</DataTable.Cell> 
+      <DataTable.Cell>BOC</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>5</DataTable.Cell> 
+      <DataTable.Cell>4</DataTable.Cell>
+      <DataTable.Cell>5</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>17</DataTable.Cell> 
+      <DataTable.Cell>KOE</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>1</DataTable.Cell> 
+      <DataTable.Cell>7</DataTable.Cell>
+      <DataTable.Cell>4</DataTable.Cell> 
+    </DataTable.Row> 
+    <DataTable.Row> 
+    <DataTable.Cell>18</DataTable.Cell> 
+      <DataTable.Cell>MAI</DataTable.Cell> 
+      <DataTable.Cell>9</DataTable.Cell> 
+      <DataTable.Cell>0</DataTable.Cell> 
+      <DataTable.Cell>3</DataTable.Cell> 
+      <DataTable.Cell>6</DataTable.Cell>
+      <DataTable.Cell>3</DataTable.Cell> 
+    </DataTable.Row>
+    </DataTable> 
+	</ScrollView> 
+  )
 }
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
