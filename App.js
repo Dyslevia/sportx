@@ -1,194 +1,50 @@
-import React from 'react';  
-import { ScrollView, View, StyleSheet, Image } from 'react-native';
-import { DataTable } from 'react-native-paper';  
+import * as React from 'react';
+import { StyleSheet, Image, View } from 'react-native';
+import { DataTable } from 'react-native-paper';
+import { KlasemenData } from './data';
+
 export default function App() {
-  const styles = StyleSheet.create({ 
-    container: { 
-      padding: 15, 
-    }, 
-    tableHeader: { 
-      backgroundColor: '#DCDCDC', 
-    }, 
-  });
   return (
-    <ScrollView> 
-          <Image
-      style={styles.image}
-      source={require('./src/assets/Bundesliga.png')}
+    <View>
+    <Image
+    source={require('./src/assets/img/Bundesliga.png')} 
+    styles={styles.pict}
     />
     <DataTable style={styles.container}> 
-    <DataTable.Header style={styles.tableHeader}> 
-      <DataTable.Title>No</DataTable.Title> 
-      <DataTable.Title>Klub</DataTable.Title> 
-      <DataTable.Title>M</DataTable.Title> 
-      <DataTable.Title>M</DataTable.Title> 
-      <DataTable.Title>S</DataTable.Title> 
-      <DataTable.Title>K</DataTable.Title>
-      <DataTable.Title>P</DataTable.Title>  
-    </DataTable.Header> 
-    <DataTable.Row> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>LEV</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>8</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell>
-      <DataTable.Cell>25</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>BAY</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>7</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell>
-      <DataTable.Cell>23</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>STU</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>7</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell>
-      <DataTable.Cell>21</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>4</DataTable.Cell> 
-      <DataTable.Cell>DOR</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell>
-      <DataTable.Cell>21</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>5</DataTable.Cell> 
-      <DataTable.Cell>RBL</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell>
-      <DataTable.Cell>20</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>6</DataTable.Cell> 
-      <DataTable.Cell>HOF</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell>
-      <DataTable.Cell>18</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>7</DataTable.Cell> 
-      <DataTable.Cell>FRA</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>5</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell>
-      <DataTable.Cell>14</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>8</DataTable.Cell> 
-      <DataTable.Cell>SCF</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>4</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>4</DataTable.Cell>
-      <DataTable.Cell>13</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>WOB</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>4</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>5</DataTable.Cell>
-      <DataTable.Cell>12</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>10</DataTable.Cell> 
-      <DataTable.Cell>AUG</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>4</DataTable.Cell>
-      <DataTable.Cell>11</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>11</DataTable.Cell> 
-      <DataTable.Cell>BMG</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>4</DataTable.Cell>
-      <DataTable.Cell>9</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>12</DataTable.Cell> 
-      <DataTable.Cell>BRE</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell>
-      <DataTable.Cell>9</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>13</DataTable.Cell> 
-      <DataTable.Cell>HEI</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell>
-      <DataTable.Cell>7</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>14</DataTable.Cell> 
-      <DataTable.Cell>D98</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell>
-      <DataTable.Cell>7</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>15</DataTable.Cell> 
-      <DataTable.Cell>UNI</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>2</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>7</DataTable.Cell>
-      <DataTable.Cell>6</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>16</DataTable.Cell> 
-      <DataTable.Cell>BOC</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>5</DataTable.Cell> 
-      <DataTable.Cell>4</DataTable.Cell>
-      <DataTable.Cell>5</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>17</DataTable.Cell> 
-      <DataTable.Cell>KOE</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>1</DataTable.Cell> 
-      <DataTable.Cell>7</DataTable.Cell>
-      <DataTable.Cell>4</DataTable.Cell> 
-    </DataTable.Row> 
-    <DataTable.Row> 
-    <DataTable.Cell>18</DataTable.Cell> 
-      <DataTable.Cell>MAI</DataTable.Cell> 
-      <DataTable.Cell>9</DataTable.Cell> 
-      <DataTable.Cell>0</DataTable.Cell> 
-      <DataTable.Cell>3</DataTable.Cell> 
-      <DataTable.Cell>6</DataTable.Cell>
-      <DataTable.Cell>3</DataTable.Cell> 
-    </DataTable.Row>
-    </DataTable> 
-	</ScrollView> 
-  )
-}
+      <DataTable.Header style={styles.tableHeader}> 
+        <DataTable.Title>No</DataTable.Title> 
+        <DataTable.Title>Klub</DataTable.Title> 
+        <DataTable.Title>M</DataTable.Title> 
+        <DataTable.Title>M</DataTable.Title> 
+        <DataTable.Title>S</DataTable.Title> 
+        <DataTable.Title>K</DataTable.Title>
+        <DataTable.Title>P</DataTable.Title>  
+      </DataTable.Header> 
+
+      {KlasemenData.slice(0, 17).map((item) => (
+        <DataTable.Row key={item.id}> 
+          <DataTable.Cell>{item.No}</DataTable.Cell> 
+          <DataTable.Cell>{item.Klub}</DataTable.Cell> 
+          <DataTable.Cell>{item.Match}</DataTable.Cell> 
+          <DataTable.Cell>{item.Win}</DataTable.Cell> 
+          <DataTable.Cell>{item.Draw}</DataTable.Cell> 
+          <DataTable.Cell>{item.Lose}</DataTable.Cell>
+          <DataTable.Cell>{item.Point}</DataTable.Cell> 
+        </DataTable.Row>
+      ))}
+    </DataTable>
+    </View>
+  );
+};
+const styles = StyleSheet.create({ 
+  container: { 
+    padding: 15, 
+  }, 
+  tableHeader: { 
+    backgroundColor: '#DCDCDC', 
+  },
+  pict: {
+    width:100,
+    height:100,
+  } 
+});

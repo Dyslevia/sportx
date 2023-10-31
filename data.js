@@ -7,7 +7,7 @@ export const KlasemenData = [
         Win: 8,
         Draw: 1,
         Lose: 0,
-        P: 25,
+        Point: 25,
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const KlasemenData = [
         Win: 7,
         Draw: 2,
         Lose: 0,
-        P: 23,
+        Point: 23,
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ export const KlasemenData = [
         Win: 7,
         Draw: 0,
         Lose: 2,
-        P: 21,
+        Point: 21,
     },
     {
         id: 4,
@@ -37,7 +37,7 @@ export const KlasemenData = [
         Win: 6,
         Draw: 2,
         Lose: 1,
-        P: 20,
+        Point: 20,
     },
     {
         id: 5,
@@ -47,7 +47,7 @@ export const KlasemenData = [
         Win: 6,
         Draw: 2,
         Lose: 1,
-        P: 20,
+        Point: 20,
     },
     {
         id: 6,
@@ -57,7 +57,7 @@ export const KlasemenData = [
         Win: 6,
         Draw: 0,
         Lose: 3,
-        P: 18,
+        Point: 18,
     },
     {
         id: 7,
@@ -67,7 +67,7 @@ export const KlasemenData = [
         Win: 3,
         Draw: 5,
         Lose: 1,
-        P: 14,
+        Point: 14,
     },
     {
         id: 8,
@@ -77,7 +77,7 @@ export const KlasemenData = [
         Win: 4,
         Draw: 1,
         Lose: 4,
-        P: 13,
+        Point: 13,
     },
     {
         id: 9,
@@ -87,7 +87,7 @@ export const KlasemenData = [
         Win: 4,
         Draw: 0,
         Lose: 5,
-        P: 12,
+        Point: 12,
     },
     {
         id: 10,
@@ -97,7 +97,7 @@ export const KlasemenData = [
         Win: 3,
         Draw: 2,
         Lose: 4,
-        P: 11,
+        Point: 11,
     },
     {
         id: 11,
@@ -107,7 +107,7 @@ export const KlasemenData = [
         Win: 2,
         Draw: 3,
         Lose: 4,
-        P: 9,
+        Point: 9,
     },
     {
         id: 12,
@@ -117,7 +117,7 @@ export const KlasemenData = [
         Win: 3,
         Draw: 0,
         Lose: 6,
-        P: 9,
+        Point: 9,
     },
     {
         id: 13,
@@ -127,7 +127,7 @@ export const KlasemenData = [
         Win: 2,
         Draw: 1,
         Lose: 6,
-        P: 7,
+        Point: 7,
     },
     {
         id: 14,
@@ -137,7 +137,7 @@ export const KlasemenData = [
         Win: 2,
         Draw: 1,
         Lose: 6,
-        P: 7,
+        Point: 7,
     },
     {
         id: 15,
@@ -147,7 +147,7 @@ export const KlasemenData = [
         Win: 2,
         Draw: 0,
         Lose: 7,
-        P: 6,
+        Point: 6,
     },
     {
         id: 16,
@@ -157,7 +157,7 @@ export const KlasemenData = [
         Win: 0,
         Draw: 5,
         Lose: 4,
-        P: 5,
+        Point: 5,
     },
     {
         id: 17,
@@ -167,7 +167,7 @@ export const KlasemenData = [
         Win: 1,
         Draw: 1,
         Lose: 7,
-        P: 4,
+        Point: 4,
     },
     {
         id: 18,
@@ -177,6 +177,6 @@ export const KlasemenData = [
         Win: 0,
         Draw: 3,
         Lose: 6,
-        P: 3,
+        Point: 3,
     },
   ];
