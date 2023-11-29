@@ -1,16 +1,38 @@
-import React from 'react';  
-import { ScrollView, View, StyleSheet, Image } from 'react-native';
-import { DataTable } from 'react-native-paper';  
+import React, {useRef} from 'react';
+import { ScrollView, View, StyleSheet, Image, Animated } from 'react-native';
+import { DataTable } from 'react-native-paper';
+import {SearchNormal1} from 'iconsax-react-native';  
 import { KlasemenData } from '../../../../data';
+import {useNavigation} from '@react-navigation/native';
+import { Text } from 'react-native-svg';
 
 const Klasemen = () => {
+  const navigation = useNavigation();
+  const handleNavigateToItemDetail = () => {
+      navigation.navigate('ItemDetail');
+  };
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const diffClampY = Animated.diffClamp(scrollY, 0, 142);
+  const recentY = diffClampY.interpolate({
+    inputRange: [0, 142],
+    outputRange: [0, -142],
+    extrapolate: 'clamp',
+  });
   return (
     <View>
+      <Animated.View style={[styles.header, { transform: [{ translateY: recentY }] }]}>
       <Image
         source={require('../../img/Bundesliga.png')} 
         styles={styles.pict}
         />
-        <ScrollView>
+      </Animated.View>
+        <Animated.ScrollView
+        showsVerticalScrollIndicator={false}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: true }
+        )}
+        contentContainerStyle={{ paddingTop: -1 }}>
         <DataTable> 
     <DataTable.Header> 
       <DataTable.Title>No</DataTable.Title> 
@@ -41,7 +63,7 @@ const Klasemen = () => {
         )
       })}
     </DataTable> 
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
   )
 }
@@ -51,6 +73,20 @@ export default Klasemen
 const styles = StyleSheet.create({ 
   pict: {
     width:'5%',
-    height:10,
-  } 
+    height:5,
+  },
+  header: {
+    paddingHorizontal: 24,
+    gap: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 52,
+    elevation: 8,
+    paddingTop: 8,
+    paddingBottom: 4,
+    zIndex: 999,
+    elevation: 1000,
+    marginBottom: 35,
+    marginTop: 40,
+  }, 
 });
