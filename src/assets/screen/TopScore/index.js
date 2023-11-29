@@ -5,9 +5,14 @@ import { TopScoresData } from '../../../../data';
 
 const TopScores= () => {
   return (
-    <DataTable> 
+    <View>
+    <Image
+      source={require('../../img/Bundesliga.png')}  
+      styles={styles.pict}
+      />
+      <ScrollView>
+      <DataTable> 
     <DataTable.Header> 
-      <DataTable.Title>No</DataTable.Title> 
       <DataTable.Title>Nama</DataTable.Title> 
       <DataTable.Title>Club</DataTable.Title> 
       <DataTable.Title>Goal</DataTable.Title> 
@@ -15,7 +20,6 @@ const TopScores= () => {
     {TopScoresData.map(item =>{
         return (
             <DataTable.Row key={item.id}> 
-              <DataTable.Cell>{item.No}</DataTable.Cell> 
               <DataTable.Cell>{item.Nama}</DataTable.Cell> 
               <DataTable.Cell>{item.Klub}</DataTable.Cell> 
               <DataTable.Cell>{item.Goal}</DataTable.Cell> 
@@ -23,7 +27,21 @@ const TopScores= () => {
         )
       })}
     </DataTable> 
+      </ScrollView>
+    </View>
   )
 }
 
 export default TopScores
+const styles = StyleSheet.create({ 
+  container: { 
+    padding: 15, 
+  }, 
+  tableHeader: { 
+    backgroundColor: '#DCDCDC', 
+  },
+  pict: {
+    width:100,
+    height:100,
+  } 
+});

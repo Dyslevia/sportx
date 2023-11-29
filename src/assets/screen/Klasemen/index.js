@@ -5,7 +5,13 @@ import { KlasemenData } from '../../../../data';
 
 const Klasemen = () => {
   return (
-          <DataTable> 
+    <View>
+      <Image
+        source={require('../../img/Bundesliga.png')} 
+        styles={styles.pict}
+        />
+        <ScrollView>
+        <DataTable> 
     <DataTable.Header> 
       <DataTable.Title>No</DataTable.Title> 
       <DataTable.Title>Klub</DataTable.Title> 
@@ -35,6 +41,8 @@ const Klasemen = () => {
         )
       })}
     </DataTable> 
+        </ScrollView>
+      </View>
   )
 }
 

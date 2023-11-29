@@ -1,29 +1,14 @@
-import * as React from 'react';
-import { StyleSheet, Image, View, ScrollView } from 'react-native';
-import { TopAssist,Klasemen,TopScore } from './src/assets/screen';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './src/router';
 
-export default function App() {
+const App = () => {
   return (
-      <View>
-      <Image
-        source={require('./src/assets/img/Bundesliga.png')} 
-        styles={styles.pict}
-        />
-        <ScrollView>
-          <Klasemen/>
-        </ScrollView>
-      </View>
-  );
-};
-const styles = StyleSheet.create({ 
-  container: { 
-    padding: 15, 
-  }, 
-  tableHeader: { 
-    backgroundColor: '#DCDCDC', 
-  },
-  pict: {
-    width:100,
-    height:100,
-  } 
-});
+    <NavigationContainer>
+      <Router/>
+  </NavigationContainer>
+  )
+}
+export default App
+const styles = StyleSheet.create({})

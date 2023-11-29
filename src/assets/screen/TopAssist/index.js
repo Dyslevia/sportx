@@ -1,10 +1,17 @@
 import * as React from 'react';
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { DataTable } from 'react-native-paper';  
 import { TopAssistData } from '../../../../data';
 
 const TopAssist= () => {
   return (
-    <DataTable> 
+    <View>
+      <Image
+        source={require('../../img/Bundesliga.png')} 
+        styles={styles.pict}
+        />
+        <ScrollView>
+        <DataTable> 
     <DataTable.Header> 
       <DataTable.Title>Nama</DataTable.Title> 
       <DataTable.Title>Club</DataTable.Title> 
@@ -20,7 +27,21 @@ const TopAssist= () => {
         )
       })}
     </DataTable> 
+        </ScrollView>
+      </View>
   )
 }
 
 export default TopAssist
+const styles = StyleSheet.create({ 
+  container: { 
+    padding: 15, 
+  }, 
+  tableHeader: { 
+    backgroundColor: '#DCDCDC', 
+  },
+  pict: {
+    width:100,
+    height:100,
+  } 
+});
