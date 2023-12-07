@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {  Home2, Avalanche, Profile2User, ShoppingCart, Rank, PresentionChart, Star } from 'iconsax-react-native';
+import {  Home2, Avalanche, Profile2User, ShoppingCart, Rank, PresentionChart, Star, Add } from 'iconsax-react-native';
 import React from 'react'
-//import { Home,Profile,Keranjang } from '../screens';
-import { Klasemen,TopAssist,TopScore } from '../assets/screen';
+import { Klasemen,TopAssist,TopScore,AddMatch,Search } from '../assets/screen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const MainApp = () => {
@@ -50,6 +49,8 @@ const Router = () => {
   return (
     <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen name="MainApp" component={MainApp} options={{ headerShown: false }} />
+      <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
+      <Stack.Screen name="AddMatch" component={AddMatch} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }

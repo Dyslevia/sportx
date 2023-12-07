@@ -1,10 +1,9 @@
 import React, {useRef} from 'react';
-import { ScrollView, View, StyleSheet, Image, Animated } from 'react-native';
 import { DataTable } from 'react-native-paper';
-import {SearchNormal1} from 'iconsax-react-native';  
+import {SearchNormal1,Category2} from 'iconsax-react-native';  
 import { KlasemenData } from '../../../../data';
-import {useNavigation} from '@react-navigation/native';
-import { Text } from 'react-native-svg';
+import { useNavigation,useFocusEffect } from "@react-navigation/native";
+import { Image,ScrollView, StyleSheet, Text, TouchableOpacity,ActivityIndicator, View, Animated } from 'react-native';
 
 const Klasemen = () => {
   const navigation = useNavigation();
@@ -33,6 +32,11 @@ const Klasemen = () => {
           { useNativeDriver: true }
         )}
         contentContainerStyle={{ paddingTop: -1 }}>
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+        <Animated.View style={{padding: 20,marginVertical: 10,borderRadius: 14,backgroundColor: 'white',marginHorizontal: 8,transform: [{translateY: recentY}]}}>
+            <Text>Cari...</Text>
+        </Animated.View>
+      </TouchableOpacity>
         <DataTable> 
     <DataTable.Header> 
       <DataTable.Title>No</DataTable.Title> 
@@ -62,7 +66,10 @@ const Klasemen = () => {
           </DataTable.Row>
         )
       })}
-    </DataTable> 
+    </DataTable>
+    <TouchableOpacity style={{padding: 20, position:'absolute', top: 630,right: 20, backgroundColor:'#252727',borderRadius: 20}} onPress={() => navigation.navigate("AddMatch")}>
+        <Category2 size="29"  color="#F7F7F7" variant='Bold'/>
+    </TouchableOpacity> 
         </Animated.ScrollView>
       </View>
   )
