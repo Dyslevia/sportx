@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {  Home2, Avalanche, Profile2User, ShoppingCart, Rank, PresentionChart, Star, Add } from 'iconsax-react-native';
 import React from 'react'
-import { Klasemen,TopAssist,TopScore,AddMatch,Search } from '../assets/screen';
+import { Klasemen,TopAssist,TopScore,AddMatch,Search,EditMatch,DetailMatch } from '../assets/screen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const MainApp = () => {
@@ -51,6 +51,8 @@ const Router = () => {
       <Stack.Screen name="MainApp" component={MainApp} options={{ headerShown: false }} />
       <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
       <Stack.Screen name="AddMatch" component={AddMatch} options={{ headerShown: false }} />
+      <Stack.Screen name="EditMatch" component={EditMatch} options={{ headerShown: false }} />
+      <Stack.Screen name="DetailItem" component={DetailMatch} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }

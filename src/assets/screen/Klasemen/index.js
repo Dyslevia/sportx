@@ -1,22 +1,48 @@
-import React, {useRef} from 'react';
+import React, {useRef,useState,useCallback} from 'react';
 import { DataTable } from 'react-native-paper';
 import {SearchNormal1,Category2} from 'iconsax-react-native';  
 import { KlasemenData } from '../../../../data';
 import { useNavigation,useFocusEffect } from "@react-navigation/native";
 import { Image,ScrollView, StyleSheet, Text, TouchableOpacity,ActivityIndicator, View, Animated } from 'react-native';
+import Item from '../../../../components/item';
+import axios from 'axios';
 
 const Klasemen = () => {
   const navigation = useNavigation();
-  const handleNavigateToItemDetail = () => {
-      navigation.navigate('ItemDetail');
-  };
-  const scrollY = useRef(new Animated.Value(0)).current;
-  const diffClampY = Animated.diffClamp(scrollY, 0, 142);
-  const recentY = diffClampY.interpolate({
-    inputRange: [0, 142],
-    outputRange: [0, -142],
-    extrapolate: 'clamp',
-  });
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const diffClampY = Animated.diffClamp(scrollY, 0, 142);
+    const recentY = diffClampY.interpolate({
+      inputRange: [0, 142],
+      outputRange: [0, -142],
+      extrapolate: 'clamp',
+    });
+    const [loading, setLoading] = useState(true);
+    const [matchData, setMatchData] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
+    const getMatchData = async () => {
+      try {
+        const response = await axios.get(
+          'https://6575788db2fbb8f6509d1f41.mockapi.io/sportxapp/match',
+        );
+        setMatchData(response.data);
+        setLoading(false)
+      } catch (error) {
+          console.error(error);
+      }
+    };
+    const onRefresh = useCallback(() => {
+      setRefreshing(true);
+      setTimeout(() => {
+        getMatchData()
+        setRefreshing(false);
+      }, 1500);
+    }, []);
+  
+    useFocusEffect(
+      useCallback(() => {
+        getMatchData();
+      }, [])
+    );
   return (
     <View>
       <Animated.View style={[styles.header, { transform: [{ translateY: recentY }] }]}>
@@ -37,6 +63,14 @@ const Klasemen = () => {
             <Text>Cari...</Text>
         </Animated.View>
       </TouchableOpacity>
+      <View style={{gap: 20}}>
+          {loading ? (
+                <ActivityIndicator size={'large'} color={'black'}/>
+              ) : (
+                matchData.map((item, index) => <Item item={item} key={index}/>)
+              )}
+        </View>
+        <View>
         <DataTable> 
     <DataTable.Header> 
       <DataTable.Title>No</DataTable.Title> 
@@ -67,6 +101,7 @@ const Klasemen = () => {
         )
       })}
     </DataTable>
+        </View>
     <TouchableOpacity style={{padding: 20, position:'absolute', top: 630,right: 20, backgroundColor:'#252727',borderRadius: 20}} onPress={() => navigation.navigate("AddMatch")}>
         <Category2 size="29"  color="#F7F7F7" variant='Bold'/>
     </TouchableOpacity> 
