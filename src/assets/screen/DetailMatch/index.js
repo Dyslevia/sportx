@@ -3,9 +3,11 @@ import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import { StyleSheet, Text, View,Image, ScrollView, Animated,TouchableOpacity,ActivityIndicator,Modal  } from 'react-native'
 import React, {useState,useRef,useEffect} from 'react'
-import axios from 'axios';
+import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import {formatNumber} from '../../../utils/formatNumber';
 import {formatDate} from '../../../utils/formatDate';
+
 const DetailItem = ({route}) => {
   const {matchId} = route.params;
     const [iconStates, setIconStates] = useState({
@@ -24,34 +26,49 @@ const DetailItem = ({route}) => {
     };
 
     useEffect(() => {
-        getDataById();
+      const subscriber = firestore()
+        .collection('item')
+        .doc(matchId)
+        .onSnapshot(documentSnapshot => {
+          const matchData = documentSnapshot.data();
+          if (matchData) {
+            console.log('Match data: ', matchData);
+            setSelectedData(matchData);
+          } else {
+            console.log(`Post with ID ${matchId} not found.`);
+          }
+        });
+      setLoading(false);
+      return () => subscriber();
     }, [matchId]);
-
-    const getDataById = async () => {
-        try {
-        const response = await axios.get(
-            `https://6575788db2fbb8f6509d1f41.mockapi.io/sportxapp/match/${matchId}`,
-        );
-        setSelectedData(response.data);
-        setLoading(false);
-        } catch (error) {
-        console.error(error);
-        }
-    };
+  
     const navigateEdit = () => {
         closeActionSheet()
         navigation.navigate('EditMatch', {matchId})
     }
     const handleDelete = async () => {
-    await axios.delete(`https://6575788db2fbb8f6509d1f41.mockapi.io/sportxapp/match/${matchId}`)
-        .then(() => {
-            closeActionSheet()
-            navigation.navigate('Klasemen');
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
+      setLoading(true);
+      try {
+        await firestore()
+          .collection('item')
+          .doc(matchId)
+          .delete()
+          .then(() => {
+            console.log('Item deleted!');
+          });
+        if (selectedData?.image) {
+          const imageRef = storage().refFromURL(selectedData?.image);
+          await imageRef.delete();
+        }
+        console.log('Item deleted!');
+        closeActionSheet();
+        setSelectedData(null);
+        setLoading(false)
+        navigation.navigate('Klasemen');
+      } catch (error) {
+        console.error(error);
+      }
+    };
     const navigation = useNavigation();
     const scrollY = useRef(new Animated.Value(0)).current;
     const diffClampY = Animated.diffClamp(scrollY, 0, 52);
@@ -109,11 +126,11 @@ const DetailItem = ({route}) => {
             resizeMode={FastImage.resizeMode.cover}></FastImage>
         </View>
         <View style={{flexDirection: 'row',gap:170, padding: 20}}>
-            <Text style={{fontSize: 18}}>{selectedData?.title}</Text>
-            <Text style={{fontSize: 18}}>{selectedData?.price}</Text>
+            <Text style={{fontSize: 18,color: 'black'}}>{selectedData?.pertandingan}</Text>
+            <Text style={{fontSize: 18,color: 'black'}}>{selectedData?.score}</Text>
         </View>
         <View style={{padding: 20}}>
-            <Text style={{fontSize: 18}}>{selectedData?.description}</Text>
+            <Text style={{fontSize: 18,color: 'black'}}>{selectedData?.deskripsi}</Text>
         </View>
     </ScrollView>
     )}

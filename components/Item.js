@@ -15,8 +15,8 @@ const Item = ({item}) => {
                     }}
                     resizeMode={FastImage.resizeMode.cover}/>
                     <View style={{flexWrap: 'wrap', flexDirection: 'column'}}>
-                        <Text style={{fontSize : 20}}>{item?.pertandingan}</Text>
-                        <Text style={{fontSize: 20}}>{item?.deskripsi}</Text>
+                        <Text style={{fontSize : 20,color: 'black'}}>{item?.pertandingan}</Text>
+                        <Text style={{fontSize: 20,color: 'black'}}>{item?.deskripsi}</Text>
                     </View>
                     </View>
                 </View>

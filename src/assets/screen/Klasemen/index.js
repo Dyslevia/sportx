@@ -1,11 +1,11 @@
-import React, {useRef,useState,useCallback} from 'react';
+import React, {useRef,useState,useCallback,useEffect} from 'react';
 import { DataTable } from 'react-native-paper';
 import {SearchNormal1,Category2} from 'iconsax-react-native';  
 import { KlasemenData } from '../../../../data';
 import { useNavigation,useFocusEffect } from "@react-navigation/native";
 import { Image,ScrollView, StyleSheet, Text, TouchableOpacity,ActivityIndicator, View, Animated } from 'react-native';
 import Item from '../../../../components/Item';
-import axios from 'axios';
+import firestore from '@react-native-firebase/firestore';
 
 const Klasemen = () => {
   const navigation = useNavigation();
@@ -19,30 +19,42 @@ const Klasemen = () => {
     const [loading, setLoading] = useState(true);
     const [matchData, setMatchData] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
-    const getMatchData = async () => {
-      try {
-        const response = await axios.get(
-          'https://6575788db2fbb8f6509d1f41.mockapi.io/sportxapp/match',
-        );
-        setMatchData(response.data);
-        setLoading(false)
-      } catch (error) {
-          console.error(error);
-      }
-    };
+    useEffect(() => {
+      const subscriber = firestore()
+        .collection('item')
+        .onSnapshot(querySnapshot => {
+          const item = [];
+          querySnapshot.forEach(documentSnapshot => {
+            item.push({
+              ...documentSnapshot.data(),
+              id: documentSnapshot.id,
+            });
+          });
+          setMatchData(item);
+          setLoading(false);
+        });
+      return () => subscriber();
+    }, 
+    []);
     const onRefresh = useCallback(() => {
       setRefreshing(true);
       setTimeout(() => {
-        getMatchData()
+        firestore()
+          .collection('item')
+          .onSnapshot(querySnapshot => {
+            const item = [];
+            querySnapshot.forEach(documentSnapshot => {
+              item.push({
+                ...documentSnapshot.data(),
+                id: documentSnapshot.id,
+              });
+            });
+            setRefreshing(matchData);
+          });
         setRefreshing(false);
       }, 1500);
-    }, []);
-  
-    useFocusEffect(
-      useCallback(() => {
-        getMatchData();
-      }, [])
-    );
+    }, 
+    []);
   return (
     <View>
       <Animated.View style={[styles.header, { transform: [{ translateY: recentY }] }]}>

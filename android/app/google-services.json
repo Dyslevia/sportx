@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919039200210",
+    "project_id": "sportx-ccebd",
+    "storage_bucket": "sportx-ccebd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919039200210:android:afbba9bb3199d355b4560b",
+        "android_client_info": {
+          "package_name": "com.sportx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW753h_hN3WoNNfAi_zDc8ifYpsx_kAPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

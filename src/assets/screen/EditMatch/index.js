@@ -11,7 +11,10 @@ import {
     ActivityIndicator
 } from "react-native";
 import { Category, DirectboxSend, Image, Notification, SearchNormal1 } from 'iconsax-react-native'
-import axios from 'axios';
+import ImagePicker from 'react-native-image-crop-picker';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore'
+
 const EditMatch = ({route}) => {
   const {matchId} = route.params;
     const [matchData, setmatchData] = useState({
@@ -29,50 +32,75 @@ const EditMatch = ({route}) => {
       };
       const [image, setImage] = useState(null);
       const navigation = useNavigation();
+      const [oldImage, setOldImage] = useState(null);
       const [loading, setLoading] = useState(true);
       useEffect(() => {
-        getPostById();
+        const subscriber = firestore()
+          .collection('item')
+          .doc(matchId)
+          .onSnapshot(documentSnapshot => {
+            const matchData = documentSnapshot.data();
+            if (matchData) {
+              console.log('Match data: ', matchData);
+              setmatchData({
+                pertandingan: matchData.pertandingan,
+                deskripsi: matchData.deskripsi,
+                score: matchData.score,
+              });
+              setOldImage(matchData.image);
+              setImage(matchData.image);
+              setLoading(false);
+            } else {
+              console.log(`Item with ID ${matchId} not found.`);
+            }
+          });
+        setLoading(false);
+        return () => subscriber();
       }, [matchId]);
     
-      const getPostById = async () => {
-        try {
-          const response = await axios.get(
-            `https://6575788db2fbb8f6509d1f41.mockapi.io/sportxapp/match/${matchId}`,
-          );
-          setmatchData({
-            pertandingan : response.data.pertandingan,
-            deskripsi : response.data.deskripsi,
-            score : response.data.score,
-            image : response.data.image,
+      const handleImagePick = async () => {
+        ImagePicker.openPicker({
+          width: 1920,
+          height: 1080,
+          cropping: true,
+        })
+          .then(image => {
+            console.log(image);
+            setImage(image.path);
           })
-        setImage(response.data.image)
-          setLoading(false);
-        } catch (error) {
-          console.error(error);
-        }
+          .catch(error => {
+            console.log(error);
+          });
       };
+    
       const handleUpdate = async () => {
         setLoading(true);
+        let filename = image.substring(image.lastIndexOf('/') + 1);
+        const extension = filename.split('.').pop();
+        const name = filename.split('.').slice(0, -1).join('.');
+        filename = name + Date.now() + '.' + extension;
+        const reference = storage().ref(`images/${filename}`);
         try {
-          await axios
-            .put(`https://6575788db2fbb8f6509d1f41.mockapi.io/sportxapp/match/${matchId}`, {
-              pertandingan: matchData.pertandingan,
-              image,
-              deskripsi: matchData.deskripsi,
-              score : matchData.score,
-              totalComments: itemData.totalComments,
-              totalLikes: itemData.totalLikes,
-            })
-            .then(function (response) {
-              console.log(response);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+          if (image !== oldImage && oldImage) {
+            const oldImageRef = storage().refFromURL(oldImage);
+            await oldImageRef.delete();
+          }
+          if (image !== oldImage) {
+            await reference.putFile(image);
+          }
+          const url =
+            image !== oldImage ? await reference.getDownloadURL() : oldImage;
+          await firestore().collection('item').doc(matchId).update({
+            pertandingan: matchData.pertandingan,
+            deskripsi: matchData.deskripsi,
+            image: url,
+            score: matchData.score,
+          });
           setLoading(false);
-          navigation.navigate('Klasemen');
-        } catch (e) {
-          console.log(e);
+          console.log('Item Updated!');
+          navigation.navigate('Klasemen', {matchId});
+        } catch (error) {
+          console.log(error);
         }
       };
   return (
@@ -157,6 +185,7 @@ const styles = StyleSheet.create({
 const textInput = StyleSheet.create({
   title:{
       fontSize: 14,
+      color: 'black'
   },
   board: {
       padding: 10,
