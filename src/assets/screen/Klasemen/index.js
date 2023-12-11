@@ -4,7 +4,7 @@ import {SearchNormal1,Category2} from 'iconsax-react-native';
 import { KlasemenData } from '../../../../data';
 import { useNavigation,useFocusEffect } from "@react-navigation/native";
 import { Image,ScrollView, StyleSheet, Text, TouchableOpacity,ActivityIndicator, View, Animated } from 'react-native';
-import Item from '../../../../components/item';
+import Item from '../../../../components/Item';
 import axios from 'axios';
 
 const Klasemen = () => {

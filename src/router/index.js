@@ -52,7 +52,7 @@ const Router = () => {
       <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
       <Stack.Screen name="AddMatch" component={AddMatch} options={{ headerShown: false }} />
       <Stack.Screen name="EditMatch" component={EditMatch} options={{ headerShown: false }} />
-      <Stack.Screen name="DetailItem" component={DetailMatch} options={{ headerShown: false }} />
+      <Stack.Screen name="DetailMatch" component={DetailMatch} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }
